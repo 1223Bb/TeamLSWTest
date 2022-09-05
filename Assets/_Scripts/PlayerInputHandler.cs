@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,6 +8,8 @@ public class PlayerInputHandler : MonoBehaviour
 {
     private PlayerControls playerControls;
     private Vector2 movementIntent;
+
+    public Action interact;
 
     private void OnEnable()
     {
@@ -24,6 +27,7 @@ public class PlayerInputHandler : MonoBehaviour
     {
         playerControls.Default.Movement.performed += MovementInputHandle;
         playerControls.Default.Movement.canceled += MovementInputHandle;
+        playerControls.Default.Interaction.performed += Interact;
     }
 
 
@@ -31,10 +35,16 @@ public class PlayerInputHandler : MonoBehaviour
     {
         playerControls.Default.Movement.performed -= MovementInputHandle;
         playerControls.Default.Movement.canceled -= MovementInputHandle;
+        playerControls.Default.Interaction.performed -= Interact;
     }
     private void MovementInputHandle(InputAction.CallbackContext obj)
     {
         movementIntent = obj.ReadValue<Vector2>();
+    }
+
+    private void Interact(InputAction.CallbackContext obj)
+    {
+        interact?.Invoke();
     }
 
     private void EnableControls()
