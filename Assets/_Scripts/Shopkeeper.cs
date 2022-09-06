@@ -4,10 +4,9 @@ using UnityEngine;
 
 public class Shopkeeper : MonoBehaviour, IInteractable
 {
-    private InteractableTracker interactableTracker;
-
     private void OnEnable()
     {
+        Debug.Log("Is singleton missing?:" + (InteractableTracker.tracker == null));
         AddToActiveInteractableList();
     }
 
@@ -15,19 +14,18 @@ public class Shopkeeper : MonoBehaviour, IInteractable
     {
         RemoveFromActiveInteractableList();
     }
-
-    public void Interaction()
-    {
-        Debug.Log("Toggle Shop menu");
-    }
-
     private void AddToActiveInteractableList()
-    {
-        interactableTracker.AddToList(this);
+    { 
+        InteractableTracker.tracker.AddToList(gameObject);
     }
 
     private void RemoveFromActiveInteractableList()
     {
-        interactableTracker.AddToList(this);
+        InteractableTracker.tracker.RemoveFromList(gameObject);
+    }
+
+    public void Interaction()
+    {
+        Debug.Log("Toggle Shop menu");
     }
 }

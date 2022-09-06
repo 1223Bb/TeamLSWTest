@@ -7,6 +7,7 @@ public class PlayerLogic : MonoBehaviour
 {
     private PlayerInputHandler inputHandler;
     private PlayerMovement movement;
+    private PlayerInteraction interaction;
     private bool canMove;
 
     private void Start()
@@ -35,6 +36,7 @@ public class PlayerLogic : MonoBehaviour
     {
         inputHandler = GetComponent<PlayerInputHandler>();
         movement = GetComponent<PlayerMovement>();
+        interaction = GetComponent<PlayerInteraction>();
     }
 
     private void SubscribeEvents()
@@ -58,5 +60,6 @@ public class PlayerLogic : MonoBehaviour
     private void Interact()
     {
         //Debug.Log("Player wants to interact");
+        interaction.TryToInteract();
     }
 }

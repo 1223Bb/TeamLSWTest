@@ -4,13 +4,29 @@ using UnityEngine;
 
 public class InteractableTracker : MonoBehaviour
 {
-    public static List<IInteractable> interactables;
+    //Singleton
+    public static InteractableTracker tracker;
 
-    public void AddToList(IInteractable interactable)
+    public static List<GameObject> activeInteractables = new List<GameObject>();
+
+    private void Awake()
     {
-        if (!interactables.Contains(interactable))
+        if(tracker==null)
         {
-            interactables.Add(interactable);
+            tracker = this;
+        }
+        else
+        {
+            Destroy(this);
+        }
+    }
+
+
+    public void AddToList(GameObject interactable)
+    {
+        if (!activeInteractables.Contains(interactable))
+        {
+            activeInteractables.Add(interactable);
         }
         else
         {
@@ -18,17 +34,15 @@ public class InteractableTracker : MonoBehaviour
         }
     }
 
-    public void RemoveFromList(IInteractable interactable)
+    public void RemoveFromList(GameObject interactable)
     {
-        if(interactables.Contains(interactable))
+        if(activeInteractables.Contains(interactable))
         {
-            interactables.Remove(interactable);
+            activeInteractables.Remove(interactable);
         }
         else
         {
             Debug.LogWarning("Attempted to remove an object that's not on the interactables list.");
         }
     }
-
-
 }
