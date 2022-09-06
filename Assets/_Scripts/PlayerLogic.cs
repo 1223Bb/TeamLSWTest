@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,7 +8,6 @@ public class PlayerLogic : MonoBehaviour
     private PlayerInputHandler inputHandler;
     private PlayerMovement movement;
     private bool canMove;
-
 
     private void Start()
     {
