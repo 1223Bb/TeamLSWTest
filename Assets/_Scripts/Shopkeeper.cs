@@ -6,7 +6,6 @@ public class Shopkeeper : MonoBehaviour, IInteractable
 {
     private void OnEnable()
     {
-        Debug.Log("Is singleton missing?:" + (InteractableTracker.tracker == null));
         AddToActiveInteractableList();
     }
 

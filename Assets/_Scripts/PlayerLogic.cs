@@ -59,7 +59,6 @@ public class PlayerLogic : MonoBehaviour
 
     private void Interact()
     {
-        //Debug.Log("Player wants to interact");
         interaction.TryToInteract();
     }
 }

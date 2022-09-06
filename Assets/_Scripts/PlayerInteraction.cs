@@ -8,12 +8,8 @@ public class PlayerInteraction : MonoBehaviour
 
     public void TryToInteract()
     {
-        //List of active interactables
         List<GameObject> activeInteractables = InteractableTracker.activeInteractables;
-        //Item to interact with
         GameObject closestInteractable = null;
-        //Check for distance with every item inside if there are any.
-        //If there are, interact
         if(activeInteractables != null)
         {
         foreach(GameObject item in activeInteractables)
