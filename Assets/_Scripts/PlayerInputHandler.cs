@@ -10,7 +10,7 @@ public class PlayerInputHandler : MonoBehaviour
     private Vector2 movementIntent;
 
     public Action interact;
-
+    public Action inventory;
     private void OnEnable()
     {
         EnableControls();
@@ -28,6 +28,7 @@ public class PlayerInputHandler : MonoBehaviour
         playerControls.Default.Movement.performed += MovementInputHandle;
         playerControls.Default.Movement.canceled += MovementInputHandle;
         playerControls.Default.Interaction.performed += Interact;
+        playerControls.Default.Inventory.performed += Inventory;
     }
 
 
@@ -36,6 +37,7 @@ public class PlayerInputHandler : MonoBehaviour
         playerControls.Default.Movement.performed -= MovementInputHandle;
         playerControls.Default.Movement.canceled -= MovementInputHandle;
         playerControls.Default.Interaction.performed -= Interact;
+        playerControls.Default.Inventory.performed -= Inventory;
     }
     private void MovementInputHandle(InputAction.CallbackContext obj)
     {
@@ -45,6 +47,11 @@ public class PlayerInputHandler : MonoBehaviour
     private void Interact(InputAction.CallbackContext obj)
     {
         interact?.Invoke();
+    }
+
+    private void Inventory(InputAction.CallbackContext obj)
+    {
+        inventory?.Invoke();
     }
 
     private void EnableControls()

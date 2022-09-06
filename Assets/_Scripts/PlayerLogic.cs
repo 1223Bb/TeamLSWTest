@@ -8,7 +8,10 @@ public class PlayerLogic : MonoBehaviour
     private PlayerInputHandler inputHandler;
     private PlayerMovement movement;
     private PlayerInteraction interaction;
-    private bool canMove;
+    private PlayerInventory inventory;
+    private bool canMove = true;
+    private bool canInteract = true;
+    private bool hasInventoryOpen = false;
 
     private void Start()
     {
@@ -37,16 +40,19 @@ public class PlayerLogic : MonoBehaviour
         inputHandler = GetComponent<PlayerInputHandler>();
         movement = GetComponent<PlayerMovement>();
         interaction = GetComponent<PlayerInteraction>();
+        inventory = GetComponent<PlayerInventory>();
     }
 
     private void SubscribeEvents()
     {
         inputHandler.interact += Interact;
+        inputHandler.inventory += ToggleInventory;
     }
 
     private void UnsubscribeEvents()
     {
         inputHandler.interact -= Interact;
+        inputHandler.inventory -= ToggleInventory;
     }
 
     private void Movement()
@@ -59,6 +65,18 @@ public class PlayerLogic : MonoBehaviour
 
     private void Interact()
     {
-        interaction.TryToInteract();
+        if(canInteract)
+        {
+            interaction.TryToInteract();
+        }
+    }
+
+    private void ToggleInventory()
+    {
+        Debug.Log("Player toggled inventory");
+        hasInventoryOpen = !hasInventoryOpen;
+        canInteract = !canInteract;
+        canMove = !canMove;
+        inventory.ToggleInventory();
     }
 }
