@@ -20,7 +20,7 @@ public class PlayerLogic : MonoBehaviour
         Initialization();
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         Movement();
     }

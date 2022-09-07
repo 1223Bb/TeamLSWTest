@@ -8,7 +8,10 @@ public class GUIManager : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI lblGold;
     [SerializeField] private GameObject pnlInventory;
+    [SerializeField] private GameObject playerInventoryContainer;
+    [SerializeField] private GameObject itemSlotPrefab;
 
+    private Inventory playerInventory;
     private Vector2 startingInventoryPosition, desiredInventoryPosition;
     private bool isInventoryShowing = false;
     public void SetGoldAmmount(int goldAmmount)
@@ -20,6 +23,24 @@ public class GUIManager : MonoBehaviour
     {
         CalculatePositions();
         SetPositions();
+
+    }
+
+    private void OnEnable()
+    {
+        
+    }
+
+    private void OnDisable()
+    {
+        playerInventory.onInventoryUpdate -= RefreshPlayerInventory;
+    }
+
+    public void SetPlayerInventory(Inventory playerInventory)
+    {
+        this.playerInventory = playerInventory;
+        playerInventory.onInventoryUpdate += RefreshPlayerInventory;
+        RefreshPlayerInventory();
     }
 
     private void CalculatePositions()
@@ -44,6 +65,21 @@ public class GUIManager : MonoBehaviour
         else
         {
             LeanTween.move(pnlInventory, startingInventoryPosition, 0.7f).setEaseOutCubic();
+        }
+    }
+
+    private void RefreshPlayerInventory()
+    {
+        foreach(Transform child in playerInventoryContainer.transform)
+        {
+            Destroy(child.gameObject);
+        }
+        foreach(InventoryItem item in playerInventory.GetItemList())
+        {
+            GameObject itemSlot = Instantiate(itemSlotPrefab, playerInventoryContainer.transform);
+            Image image = itemSlot.transform.Find("Image").GetComponent<Image>();
+            image.sprite = item.GetSprite();
+
         }
     }
 }
