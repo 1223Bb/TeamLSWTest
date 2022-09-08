@@ -8,7 +8,6 @@ public class PlayerInputHandler : MonoBehaviour
 {
     private PlayerControls playerControls;
     private Vector2 movementIntent;
-    private Vector2 mousePosition;
     public Action interact;
     public Action inventory;
     private void OnEnable()
@@ -29,7 +28,6 @@ public class PlayerInputHandler : MonoBehaviour
         playerControls.Default.Movement.canceled += MovementInputHandle;
         playerControls.Default.Interaction.performed += Interact;
         playerControls.Default.Inventory.performed += Inventory;
-        playerControls.Default.MousePosition.performed += UpdateMousePosition;
     }
 
     private void EventUnsubscription()
@@ -38,7 +36,6 @@ public class PlayerInputHandler : MonoBehaviour
         playerControls.Default.Movement.canceled -= MovementInputHandle;
         playerControls.Default.Interaction.performed -= Interact;
         playerControls.Default.Inventory.performed -= Inventory;
-        playerControls.Default.MousePosition.performed -= UpdateMousePosition;
     }
     private void MovementInputHandle(InputAction.CallbackContext obj)
     {
@@ -69,15 +66,5 @@ public class PlayerInputHandler : MonoBehaviour
     public Vector2 GetMovementIntent()
     {
         return movementIntent;
-    }
-
-    private void UpdateMousePosition(InputAction.CallbackContext obj)
-    {
-        mousePosition = obj.ReadValue<Vector2>();
-    }
-
-    public Vector2 GetMousePosition()
-    {
-        return mousePosition;
     }
 }

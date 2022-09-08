@@ -10,10 +10,24 @@ public class PlayerInventory : MonoBehaviour
     private Inventory inventory;
     private bool isInventoryOpened = false;
 
-    private void Start()
+    private void Awake()
     {
         inventory = new Inventory();
+        inventory.AddItem(ItemSpriteReferences.Instance.itemDictionary["Red Shirt"]);
+        inventory.AddItem(ItemSpriteReferences.Instance.itemDictionary["Blue Pants"]);
         guiManager.SetPlayerInventory(inventory);
+        //Debug.Log("InvCount " + inventory.GetCount());
+    }
+
+    private void Start()
+    {
+        
+        //guiManager.SetPlayerInventory(inventory);
+    }
+
+    public Inventory GetInventory()
+    {
+        return inventory;
     }
 
     public void ToggleInventory()

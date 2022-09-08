@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Shopkeeper : MonoBehaviour, IInteractable
 {
+    [SerializeField] private GUIManager guiManager;
+
     private void OnEnable()
     {
         AddToActiveInteractableList();
@@ -26,5 +28,6 @@ public class Shopkeeper : MonoBehaviour, IInteractable
     public void Interaction()
     {
         Debug.Log("Toggle Shop menu");
+        guiManager.ToggleShopInventoryUI();
     }
 }

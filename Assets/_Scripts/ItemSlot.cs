@@ -1,17 +1,38 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using TMPro;
 
-public class ItemSlot : MonoBehaviour, IDropHandler
+public class ItemSlot : MonoBehaviour
 {
-    public void OnDrop(PointerEventData eventData)
+    [SerializeField] private Image icon;
+    [SerializeField] private InventoryItem itemInSlot;
+    [SerializeField] TextMeshProUGUI txtValue;
+
+
+
+    public void SetItem(InventoryItem item)
     {
-        if(eventData != null)
+        itemInSlot = item;
+        SetIcon();
+    }
+    private void SetIcon()
+    {
+        icon.sprite = itemInSlot.icon;
+        txtValue.text = itemInSlot.value.ToString();
+    }
+
+    public void SelectItem()
+    {
+        if(itemInSlot != null)
         {
-            eventData.pointerDrag.GetComponent<RectTransform>().anchoredPosition = transform.position;
-            eventData.pointerDrag.GetComponent<DragAndDrop>().Reparent();
+            InventorySelectionTracker.Instance.SelectItem(itemInSlot);
         }
-        //InventoryItem item = DragAndDrop.Instance.GetItem();
+        else
+        {
+            InventorySelectionTracker.Instance.DeselectItem();
+        }
     }
 }
