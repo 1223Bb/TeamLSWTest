@@ -3,15 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Inventory : MonoBehaviour
+public class Inventory
 {
     private List<InventoryItem> items = new List<InventoryItem>();
     private int money;
-
-    private void Start()
-    {
-        UpdateMoneyUI();
-    }
 
     public void UpdateMoneyUI()
     {
@@ -50,6 +45,11 @@ public class Inventory : MonoBehaviour
     public void SetMoney(int amount)
     {
         money = amount;
+    }
+
+    public int GetMoney()
+    {
+        return money;
     }
 
     public void SubtractMoney(int amount)

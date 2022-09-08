@@ -35,6 +35,7 @@ public class GUIManager : MonoBehaviour
         CalculatePositions();
         SetPositions();
         RefreshPlayerInventory();
+        playerInventory.UpdateMoneyUI();
     }
 
     private void OnEnable()
