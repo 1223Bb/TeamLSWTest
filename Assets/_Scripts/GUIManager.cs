@@ -12,8 +12,9 @@ public class GUIManager : MonoBehaviour
     [SerializeField] private GameObject pnlInventory, pnlShopInventory;
     [SerializeField] private GameObject playerInventoryContainer;
     [SerializeField] private GameObject itemSlotPrefab;
+    [SerializeField] private PlayerInventory playerInventory;
+    private Inventory playerItemInventory;
 
-    private Inventory playerInventory = new Inventory();
 
     private Vector2 startingInventoryPosition, desiredInventoryPosition, startingShopInventoryPosition, desiredShopInventoryPosition;
     private bool isInventoryShowing = false, isShopInventoryShowing = false;
@@ -34,8 +35,9 @@ public class GUIManager : MonoBehaviour
     {
         CalculatePositions();
         SetPositions();
+        playerItemInventory = playerInventory.GetInventory();
+        playerItemInventory.UpdateMoneyUI();
         RefreshPlayerInventory();
-        playerInventory.UpdateMoneyUI();
     }
 
     private void OnEnable()
@@ -90,10 +92,10 @@ public class GUIManager : MonoBehaviour
         }
     }
 
-    public void SetPlayerInventory(Inventory playerInventory)
-    {
-        this.playerInventory = playerInventory;
-    }
+    //public void SetPlayerInventory(Inventory playerInventory)
+    //{
+    //    this.playerInventory = playerInventory;
+    //}
 
     public void RefreshPlayerInventory()
     {
@@ -101,15 +103,15 @@ public class GUIManager : MonoBehaviour
         {
             Destroy(playerInventoryContainer.transform.GetChild(0).gameObject);
         }
-        if (playerInventory != null)
+        if (playerItemInventory != null)
         {
-            foreach (InventoryItem item in playerInventory.GetItemList())
+            for(int i = 0; i < playerItemInventory.GetCount(); i++)
             {
                 GameObject itemSlotGameObject = Instantiate(itemSlotPrefab, playerInventoryContainer.transform);
                 ItemSlot itemSlot = itemSlotGameObject.GetComponent<ItemSlot>();
                 //Debug.Log("is itemSlot null " + itemSlot == null);
                 //Debug.Log("Item to be set" + item);
-                itemSlot.SetItem(item);
+                itemSlot.SetItem(playerItemInventory.GetItemList()[i]);
             }
         }
     }

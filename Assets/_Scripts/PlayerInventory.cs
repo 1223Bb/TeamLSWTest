@@ -15,7 +15,7 @@ public class PlayerInventory : MonoBehaviour
         inventory = new Inventory();
         inventory.AddItem(ItemSpriteReferences.Instance.itemDictionary["Red Shirt"]);
         inventory.AddItem(ItemSpriteReferences.Instance.itemDictionary["Blue Pants"]);
-        guiManager.SetPlayerInventory(inventory);
+        //guiManager.SetPlayerInventory(inventory);
         //Debug.Log("InvCount " + inventory.GetCount());
     }
 
