@@ -40,6 +40,11 @@ public class GUIManager : MonoBehaviour
         RefreshPlayerInventory();
     }
 
+    private void Update()
+    {
+        //RefreshPlayerInventory();
+    }
+
     private void OnEnable()
     {
         
@@ -99,14 +104,21 @@ public class GUIManager : MonoBehaviour
 
     public void RefreshPlayerInventory()
     {
-        for(int i = playerInventoryContainer.transform.childCount; i>0;i--)
+        //for(int i = playerInventoryContainer.transform.childCount; i>0;i--)
+        //{
+        //    Debug.Log("Removing " + playerInventoryContainer.transform.GetChild(0).gameObject.name + " from UI");
+        //    Destroy(playerInventoryContainer.transform.GetChild(0).gameObject);
+        //}
+        foreach (Transform child in playerInventoryContainer.transform)
         {
-            Destroy(playerInventoryContainer.transform.GetChild(0).gameObject);
+            Destroy(child.gameObject);
         }
         if (playerItemInventory != null)
         {
-            for(int i = 0; i < playerItemInventory.GetCount(); i++)
+            int playerItemCount = playerItemInventory.GetCount();
+            for (int i = 0; i < playerItemCount; i++)
             {
+                Debug.Log("Adding item to UI. Item: " + playerItemInventory.GetItemList()[i].ToString() + " | Inventory count: " + playerItemInventory.GetCount());
                 GameObject itemSlotGameObject = Instantiate(itemSlotPrefab, playerInventoryContainer.transform);
                 ItemSlot itemSlot = itemSlotGameObject.GetComponent<ItemSlot>();
                 //Debug.Log("is itemSlot null " + itemSlot == null);

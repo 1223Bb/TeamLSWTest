@@ -19,6 +19,7 @@ public class SellButton : MonoBehaviour
             playerItemInventory.GiveMoney(InventorySelectionTracker.Instance.selectedItem.value);
             playerItemInventory.RemoveItem(InventorySelectionTracker.Instance.selectedItem);
             playerItemInventory.UpdateMoneyUI();
+            //GUIManager.Instance.RefreshPlayerInventory();
             InventorySelectionTracker.Instance.DeselectItem();
         }
         else
