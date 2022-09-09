@@ -28,6 +28,7 @@ public class PlayerInputHandler : MonoBehaviour
         playerControls.Default.Movement.canceled += MovementInputHandle;
         playerControls.Default.Interaction.performed += Interact;
         playerControls.Default.Inventory.performed += Inventory;
+        playerControls.Default.ExitGame.performed += ExitGame;
     }
 
     private void EventUnsubscription()
@@ -36,6 +37,7 @@ public class PlayerInputHandler : MonoBehaviour
         playerControls.Default.Movement.canceled -= MovementInputHandle;
         playerControls.Default.Interaction.performed -= Interact;
         playerControls.Default.Inventory.performed -= Inventory;
+        playerControls.Default.ExitGame.performed -= ExitGame;
     }
     private void MovementInputHandle(InputAction.CallbackContext obj)
     {
@@ -50,6 +52,10 @@ public class PlayerInputHandler : MonoBehaviour
     private void Inventory(InputAction.CallbackContext obj)
     {
         inventory?.Invoke();
+    }
+    private void ExitGame(InputAction.CallbackContext obj)
+    {
+        Application.Quit();
     }
 
     private void EnableControls()

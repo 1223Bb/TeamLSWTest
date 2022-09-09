@@ -3610,8 +3610,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 15.47229, y: 6.7203064}
-  m_SizeDelta: {x: 393.46704, y: 171.70996}
+  m_AnchoredPosition: {x: 13.814194, y: 8.488945}
+  m_SizeDelta: {x: 351.30084, y: 216.68707}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &683218252
 MonoBehaviour:
@@ -21036,8 +21036,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0.000022888184, y: -0.031856537}
-  m_SizeDelta: {x: 393.46704, y: 171.71002}
+  m_AnchoredPosition: {x: 0.00002, y: -0.031856537}
+  m_SizeDelta: {x: 351.30084, y: 216.68716}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &2107218309
 MonoBehaviour:
@@ -21065,7 +21065,10 @@ MonoBehaviour:
 
     E - Interact
 
-    Tab - Inventory'
+    Tab - Inventory
+
+    Esc
+    - Quit game'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
