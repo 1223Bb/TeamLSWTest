@@ -16,7 +16,7 @@ public class Inventory
     public void AddItem(InventoryItem itemToAdd)
     {
         items.Add(itemToAdd);
-        Debug.Log(itemToAdd.displayName + "has been added. Item count is now at " + items.Count);
+        Debug.Log(itemToAdd.displayName + " has been added. Item count is now at " + items.Count);
         GUIManager.Instance.RefreshPlayerInventory();
     }
 
